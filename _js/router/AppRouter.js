@@ -7,26 +7,28 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  '../view/HomeView',
-  '../view/LoginView'
-], ($, _, Backbone, HomeView, LoginView) => {
+  '../view/CreationsView',
+  '../view/LoginView',
+  '../view/GroupsView',
+  '../view/ArtistsView'
+], ($, _, Backbone, CreationsView, LoginView, GroupsView, ArtistsView) => {
   var AppRouter = Backbone.Router.extend({
     initialize: function() {
       _.bindAll.apply(_, [this].concat(_.functions(this)));
     },
 
     routes: {
-      '': 'home',
+      '': 'creations',
       'login': 'login',
       'logout': 'logout',
       'groups': 'groups',
       'creations': 'creations',
       'artists': 'artists',
-      '*path': 'home'
+      '*path': 'creations'
     },
 
-    home: function() {
-      this.render(new HomeView());
+    creations: function() {
+      this.render(new CreationsView());
     },
 
     login: function() {
@@ -40,15 +42,11 @@ define([
     },
 
     groups: function() {
-      this.render(new HomeView());
-    },
-
-    creations: function() {
-      this.render(new HomeView());
+      this.render(new GroupsView());
     },
 
     artists: function() {
-      this.render(new HomeView());
+      this.render(new ArtistsView());
     },
 
     render: function(view) {
