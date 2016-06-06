@@ -13,8 +13,29 @@ define([
     tagName: 'article',
     className: 'creation',
 
+    events: {
+      'click .feature': 'featureHandler',
+      'click .score': 'scoreHandler',
+      'click .delete': 'deleteHandler'
+    },
+
     initialize: function () {
       _.bindAll.apply(_, [this].concat(_.functions(this)));
+    },
+
+    featureHandler: function (e) {
+      e.preventDefault();
+      this.model.feature();
+    },
+
+    scoreHandler: function (e) {
+      e.preventDefault();
+      console.log('score');
+    },
+
+    deleteHandler: function (e) {
+      e.preventDefault();
+      this.model.destroy();
     },
 
     render: function () {
