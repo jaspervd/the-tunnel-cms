@@ -16,10 +16,35 @@ define([
 
     routes: {
       '': 'home',
+      'login': 'login',
+      'logout': 'logout',
+      'groups': 'groups',
+      'creations': 'creations',
+      'artists': 'artists',
       '*path': 'home'
     },
 
     home: function() {
+      this.render(new HomeView());
+    },
+
+    login: function() {
+      this.render(new HomeView());
+    },
+
+    logout: function() {
+      this.render(new HomeView());
+    },
+
+    groups: function() {
+      this.render(new HomeView());
+    },
+
+    creations: function() {
+      this.render(new HomeView());
+    },
+
+    artists: function() {
       this.render(new HomeView());
     },
 
