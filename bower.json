@@ -1,0 +1,21 @@
+{
+  "name": "the-tunnel-cms",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Jesamine Deprez <jesamine.deprez@student.howest.be>",
+    "Jasper Van Damme <jasper.van.damme@student.howest.be>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/jaspervd/the-tunnel-cms",
+  "moduleType": [
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
