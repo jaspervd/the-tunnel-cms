@@ -10,11 +10,16 @@ define([
   '../view/CreationsView',
   '../view/LoginView',
   '../view/GroupsView',
-  '../view/ArtistsView'
-], ($, _, Backbone, CreationsView, LoginView, GroupsView, ArtistsView) => {
+  '../view/ArtistsView',
+  '../view/NavigationView',
+  '../view/FooterView'
+], ($, _, Backbone, CreationsView, LoginView, GroupsView, ArtistsView, NavigationView, FooterView) => {
   var AppRouter = Backbone.Router.extend({
     initialize: function() {
       _.bindAll.apply(_, [this].concat(_.functions(this)));
+
+      this.navigationView = new NavigationView();
+      this.footerView = new FooterView();
     },
 
     routes: {
@@ -52,7 +57,9 @@ define([
     render: function(view) {
       var $container = $('.container');
       $container.html('');
+      $container.append(this.navigationView.render().$el);
       $container.append(view.render().$el);
+      $container.append(this.footerView.render().$el);
     }
   });
 

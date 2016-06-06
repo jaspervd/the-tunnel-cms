@@ -12,7 +12,11 @@ define([], () => {
     creator_id: null,
     approved: false,
     created_time: '',
-    urlRoot: `${api}/groups/`
+    urlRoot: `${api}/groups/`,
+
+    approve: function() {
+      console.log('approve');
+    }
   });
 
   return Group;
