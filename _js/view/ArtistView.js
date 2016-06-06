@@ -13,8 +13,23 @@ define([
     tagName: 'article',
     className: 'artist',
 
+    events: {
+      'click .hide': 'hideHandler',
+      'click .delete': 'deleteHandler'
+    },
+
     initialize: function () {
       _.bindAll.apply(_, [this].concat(_.functions(this)));
+    },
+
+    hideHandler: function (e) {
+      e.preventDefault();
+      this.model.hide();
+    },
+
+    deleteHandler: function (e) {
+      e.preventDefault();
+      this.model.destroy();
     },
 
     render: function () {
