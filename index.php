@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 define('DS', DIRECTORY_SEPARATOR);
 define('WWW_ROOT', __DIR__ . DS);
 
-$basename = substr($_SERVER['REQUEST_URI'], 0, -1); // trim last dash
+$basename = str_replace('/index.php', '', $_SERVER['SCRIPT_NAME']); // remove index.php
 ?>
 <!DOCTYPE html>
 <html>

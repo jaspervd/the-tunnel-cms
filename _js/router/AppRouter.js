@@ -7,8 +7,9 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  '../view/HomeView'
-], ($, _, Backbone, HomeView) => {
+  '../view/HomeView',
+  '../view/LoginView'
+], ($, _, Backbone, HomeView, LoginView) => {
   var AppRouter = Backbone.Router.extend({
     initialize: function() {
       _.bindAll.apply(_, [this].concat(_.functions(this)));
@@ -29,11 +30,13 @@ define([
     },
 
     login: function() {
-      this.render(new HomeView());
+      this.render(new LoginView());
     },
 
     logout: function() {
-      this.render(new HomeView());
+      $.post(`${api}/logout`);
+      window.user = {};
+      Backbone.history.navigate('login', true);
     },
 
     groups: function() {
