@@ -4,7 +4,7 @@
 import { api } from 'classes/globals';
 import { Model } from 'backbone';
 
-define([], () => {
+define(['jquery'], ($) => {
   var Group = Model.extend({
     id: null,
     title: '',
@@ -15,7 +15,14 @@ define([], () => {
     urlRoot: `${api}/groups/`,
 
     approve: function() {
-      console.log('approve');
+      $.ajax({
+        url: `${this.urlRoot}${this.get('id')}/approve`,
+        type: 'PATCH'
+      }).success((data) => {
+        console.log(data);
+      }).fail(() => {
+        console.log('error');
+      });
     }
   });
 

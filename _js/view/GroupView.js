@@ -13,8 +13,23 @@ define([
     tagName: 'article',
     className: 'group',
 
+    events: {
+      'click .approve': 'approveHandler',
+      'click .delete': 'deleteHandler'
+    },
+
     initialize: function () {
       _.bindAll.apply(_, [this].concat(_.functions(this)));
+    },
+
+    approveHandler: function (e) {
+      e.preventDefault();
+      this.model.approve();
+    },
+
+    deleteHandler: function (e) {
+      e.preventDefault();
+      this.model.destroy();
     },
 
     render: function () {
