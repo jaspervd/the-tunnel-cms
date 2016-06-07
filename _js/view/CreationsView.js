@@ -13,14 +13,20 @@ define([
   var CreationsView = Backbone.View.extend({
     template: template,
 
+    events: {
+      'click .notnominated': 'renderNotNominatedCreations',
+      'click .notscored': 'renderNotScoredCreations',
+      'click .all': 'renderAllCreations'
+    },
+
     initialize: function () {
       this.getScores();
     },
 
     getCreations: function() {
       this.collection = new Creations();
-      this.collection.on('reset sync', this.addAllCreations, this);
-      this.collection.fetch({data: $.param({nominated: 0}), reset: true});
+      this.collection.on('reset sync', this.renderNotNominatedCreations, this);
+      this.collection.fetch({reset: true});
     },
 
     getScores: function() {
@@ -29,7 +35,7 @@ define([
       this.scores.fetch({data: $.param({user_id: window.user.id}), reset: true});
     },
 
-    addCreation: function(creation) {
+    renderCreation: function(creation) {
       var score = this.scores.findWhere({user_id: window.user.id, creation_id: creation.get('id')});
       if(!$.isEmptyObject(score)) {
         score = score.toJSON();
@@ -38,9 +44,28 @@ define([
       this.$el.find('.creations').append(view.render().$el);
     },
 
-    addAllCreations: function() {
+    renderCreations: function(creations) {
       this.render();
-      this.collection.each(this.addCreation.bind(this), this);
+      if(!$.isEmptyObject(creations) && creations.length > 0) {
+        creations.each(this.renderCreation.bind(this), this);
+      }
+    },
+
+    renderNotNominatedCreations: function(e) {
+      if(!(e instanceof Backbone.Collection)) {
+        e.preventDefault();
+      }
+      this.renderCreations(this.collection.filterNotNominated());
+    },
+
+    renderNotScoredCreations: function(e) {
+      e.preventDefault();
+      this.renderCreations(this.collection.filterNotScored());
+    },
+
+    renderAllCreations: function(e) {
+      e.preventDefault();
+      this.renderCreations(this.collection);
     },
 
     render: function () {
