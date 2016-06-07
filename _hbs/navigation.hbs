@@ -1,7 +1,13 @@
 <ul>
+	{{#if role.can_edit_creations}}
 	<li><a href="#creations">Creations</a></li>
+	{{/if}}
+	{{#if role.can_edit_users}}
 	<li><a href="#artists">Artists</a></li>
+	{{/if}}
+	{{#if role.can_approve_groups}}
 	<li><a href="#groups">Groups</a></li>
+	{{/if}}
 	{{#if id}}
 	<li><a href="#logout">Logout</a></li>
 	{{else}}

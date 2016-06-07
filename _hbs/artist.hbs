@@ -1,3 +1,3 @@
-<h1>{{username}}</h1>
-{{bio}}
-<a href="#" class="hide">Hide</a> - <a href="#" class="delete">Delete</a>
+<h1>{{artist.username}}</h1>
+{{artist.bio}}
+<a href="#" class="hide">Hide</a>{{#if admin.role.can_delete_users}} - <a href="#" class="delete">Delete</a>{{/if}}

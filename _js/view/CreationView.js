@@ -49,7 +49,7 @@ define([
     },
 
     render: function () {
-      this.$el.html(this.template(this.model.toJSON()));
+      this.$el.html(this.template({creation: this.model.toJSON(), admin: window.user}));
       this.delegateEvents();
       return this;
     }

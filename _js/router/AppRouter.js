@@ -15,10 +15,13 @@ define([
   '../view/FooterView'
 ], ($, _, Backbone, CreationsView, LoginView, GroupsView, ArtistsView, NavigationView, FooterView) => {
   var AppRouter = Backbone.Router.extend({
+    currentView: undefined,
+
     initialize: function() {
       _.bindAll.apply(_, [this].concat(_.functions(this)));
 
       this.navigationView = new NavigationView();
+      this.currentView = new LoginView();
       this.footerView = new FooterView();
 
       this.authenticationCheck();
@@ -35,7 +38,9 @@ define([
     },
 
     creations: function() {
-      this.render(new CreationsView());
+      this.priviligeCheck(window.user.role.can_edit_creations);
+      this.currentView = new CreationsView();
+      this.render();
     },
 
     login: function() {
@@ -49,27 +54,37 @@ define([
     },
 
     groups: function() {
-      this.render(new GroupsView());
+      this.priviligeCheck(window.user.role.can_approve_groups);
+      this.currentView = new GroupsView();
+      this.render();
     },
 
     artists: function() {
-      this.render(new ArtistsView());
+      this.priviligeCheck(window.user.role.can_edit_users);
+      this.currentView = new ArtistsView();
+      this.render();
     },
 
     authenticationCheck: function() {
-      window.user = {};
+      window.user = {role: {}};
       $.post(`${api}/auth`, (data) => {
         window.user = data;
       }).done(() => {
-        this.navigationView.render(); // re-render because window.user is not filled on first render
+        this.render(); // re-render because window.user is not filled on first render
       });
     },
 
-    render: function(view) {
+    priviligeCheck: function(role) {
+      if(!$.isEmptyObject(window.user.role) && !role) {
+        Backbone.history.navigate('login', true);
+      }
+    },
+
+    render: function() {
       var $container = $('.container');
       $container.html('');
       $container.append(this.navigationView.render().$el);
-      $container.append(view.render().$el);
+      $container.append(this.currentView.render().$el);
       $container.append(this.footerView.render().$el);
     }
   });
