@@ -20,16 +20,18 @@ define([
 
       this.navigationView = new NavigationView();
       this.footerView = new FooterView();
+
+      this.authenticationCheck();
     },
 
     routes: {
-      '': 'creations',
+      '': 'login',
       'login': 'login',
       'logout': 'logout',
       'groups': 'groups',
       'creations': 'creations',
       'artists': 'artists',
-      '*path': 'creations'
+      '*path': 'login'
     },
 
     creations: function() {
@@ -52,6 +54,15 @@ define([
 
     artists: function() {
       this.render(new ArtistsView());
+    },
+
+    authenticationCheck: function() {
+      window.user = {};
+      $.post(`${api}/auth`, (data) => {
+        window.user = data;
+      }).done(() => {
+        this.navigationView.render(); // re-render because window.user is not filled on first render
+      });
     },
 
     render: function(view) {
