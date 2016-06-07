@@ -38,6 +38,8 @@ define([
       score.set('creation_id', this.model.get('id'));
       score.set('score', this.$el.find('.range-points').val());
       score.save();
+      this.options.score = score.toJSON();
+      this.render();
     },
 
     pointsHandler: function(e) {
