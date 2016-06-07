@@ -23,5 +23,8 @@ $basename = str_replace('/index.php', '', $_SERVER['SCRIPT_NAME']); // remove in
 	window.app.basename = '<?php echo $basename; ?>';
 	</script>
 	<script src="js/script.js"></script>
+	<script id="__bs_script__">//<![CDATA[
+    document.write("<script async src='http://HOST:8890/browser-sync/browser-sync-client.2.12.12.js'><\/script>".replace("HOST", location.hostname));
+    //]]></script>
 </body>
 </html>
