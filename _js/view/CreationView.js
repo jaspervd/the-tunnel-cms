@@ -22,7 +22,8 @@ define([
       'change .range-points': 'pointsHandler'
     },
 
-    initialize: function () {
+    initialize: function (options) {
+      this.options = options;
       _.bindAll.apply(_, [this].concat(_.functions(this)));
     },
 
@@ -50,7 +51,7 @@ define([
     },
 
     render: function () {
-      this.$el.html(this.template({creation: this.model.toJSON(), admin: window.user}));
+      this.$el.html(this.template({creation: this.model.toJSON(), admin: window.user, score: this.options.score}));
       this.delegateEvents();
       return this;
     }

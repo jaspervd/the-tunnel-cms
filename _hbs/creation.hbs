@@ -5,10 +5,14 @@
 </footer>
 {{#if admin.role.can_feature_creations}}<a href="#" class="feature">Feature</a>{{/if}}{{#if admin.role.can_delete_creations}} - <a href="#" class="delete">Delete</a>{{/if}}
 {{#if admin.role.can_judge_creations}}
+	{{#if score}}
+		You already gave a score of {{score.score}}
+	{{else}}
 <div class="score">
 	<form method="post" action="">
 		<input type="range" class="range-points" name="points" min="0" max="10" value="0" />
 		<input type="submit" class="submit-points" value="Give 0 points" />
 	</form>
 </div>
+	{{/if}}
 {{/if}}

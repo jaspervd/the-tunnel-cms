@@ -23,8 +23,6 @@ define([
       this.navigationView = new NavigationView();
       this.currentView = new LoginView();
       this.footerView = new FooterView();
-
-      this.authenticationCheck();
     },
 
     routes: {
@@ -35,6 +33,14 @@ define([
       'creations': 'creations',
       'artists': 'artists',
       '*path': 'login'
+    },
+
+    execute: function(callback, args) {
+      if ($.isEmptyObject(window.user)) {
+        this.authenticationCheck();
+      } else {
+        callback.apply(this, args);
+      }
     },
 
     creations: function() {
@@ -70,7 +76,7 @@ define([
       $.post(`${api}/auth`, (data) => {
         window.user = data;
       }).done(() => {
-        this.render(); // re-render because window.user is not filled on first render
+        Backbone.history.loadUrl(Backbone.history.fragment); // Instead of rendering login view, go to appropriate view
       });
     },
 
