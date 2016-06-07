@@ -37,7 +37,11 @@ define([
 
     execute: function(callback, args) {
       if ($.isEmptyObject(window.user)) {
-        this.authenticationCheck();
+        if(Backbone.history.getFragment() !== 'login' && Backbone.history.getFragment() !== '') {
+          this.authenticationCheck();
+        } else {
+          this.render();
+        }
       } else {
         callback.apply(this, args);
       }
@@ -50,7 +54,8 @@ define([
     },
 
     login: function() {
-      this.render(new LoginView());
+      this.currentView = new LoginView();
+      this.render();
     },
 
     logout: function() {
@@ -77,6 +82,8 @@ define([
         window.user = data;
       }).done(() => {
         Backbone.history.loadUrl(Backbone.history.fragment); // Instead of rendering login view, go to appropriate view
+      }).fail(() => {
+        Backbone.history.navigate('login', true);
       });
     },
 
