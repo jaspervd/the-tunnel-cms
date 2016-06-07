@@ -46,6 +46,7 @@ define([
     deleteHandler: function (e) {
       e.preventDefault();
       this.model.destroy();
+      this.remove();
     },
 
     render: function () {
