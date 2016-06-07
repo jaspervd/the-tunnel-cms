@@ -15,7 +15,7 @@ define([
     initialize: function () {
       this.collection = new Creations();
       this.collection.on('reset sync', this.addAllCreations, this);
-      this.collection.fetch({reset: true});
+      this.collection.fetch({data: $.param({nominated: 0}), reset: true});
     },
 
     addCreation: function(creation) {
