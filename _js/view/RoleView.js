@@ -24,6 +24,17 @@ define([
 
     saveHandler: function (e) {
       e.preventDefault();
+      this.model.set('title', this.$el.find('.title').val());
+      this.model.set('can_edit_users', this.checkedValue('.can_edit_users'));
+      this.model.set('can_delete_users', this.checkedValue('.can_delete_users'));
+      this.model.set('can_edit_roles', this.checkedValue('.can_edit_roles'));
+      this.model.set('can_approve_groups', this.checkedValue('.can_approve_groups'));
+      this.model.set('can_edit_creations', this.checkedValue('.can_edit_creations'));
+      this.model.set('can_delete_creations', this.checkedValue('.can_delete_creations'));
+      this.model.set('can_feature_creations', this.checkedValue('.can_feature_creations'));
+      this.model.set('can_judge_creations', this.checkedValue('.can_judge_creations'));
+      this.model.save();
+      /*
       $.ajax({
         url: `${this.model.urlRoot}/${this.model.get('id')}`,
         data: $(e.currentTarget).serialize(),
@@ -34,7 +45,11 @@ define([
       }).fail((data) => {
         console.log('error');
         return data;
-      });
+      });*/
+    },
+
+    checkedValue: function(input) {
+      return this.$el.find(`${input}:checked`).length > 0;
     },
 
     deleteHandler: function (e) {

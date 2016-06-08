@@ -28,15 +28,15 @@ define([
     addHandler: function(e) {
       e.preventDefault();
       var role = new Role();
-      role.set('title', this.$el.find('.title').val());
-      role.set('can_edit_users', this.$el.find('.can_edit_users').val());
-      role.set('can_delete_users', this.$el.find('.can_delete_users').val());
-      role.set('can_edit_roles', this.$el.find('.can_edit_roles').val());
-      role.set('can_approve_groups', this.$el.find('.can_approve_groups').val());
-      role.set('can_edit_creations', this.$el.find('.can_edit_creations').val());
-      role.set('can_delete_creations', this.$el.find('.can_delete_creations').val());
-      role.set('can_feature_creations', this.$el.find('.can_feature_creations').val());
-      role.set('can_judge_creations', this.$el.find('.can_judge_creations').val());
+      role.set('title', this.$el.find('.add .title').val());
+      role.set('can_edit_users', this.checkedValue('.can_edit_users'));
+      role.set('can_delete_users', this.checkedValue('.can_delete_users'));
+      role.set('can_edit_roles', this.checkedValue('.can_edit_roles'));
+      role.set('can_approve_groups', this.checkedValue('.can_approve_groups'));
+      role.set('can_edit_creations', this.checkedValue('.can_edit_creations'));
+      role.set('can_delete_creations', this.checkedValue('.can_delete_creations'));
+      role.set('can_feature_creations', this.checkedValue('.can_feature_creations'));
+      role.set('can_judge_creations', this.checkedValue('.can_judge_creations'));
       role.save();
     },
 
@@ -48,6 +48,10 @@ define([
     renderRoles: function() {
       this.render();
       this.collection.each(this.renderRole.bind(this), this);
+    },
+
+    checkedValue: function(input) {
+      return this.$el.find(`.add ${input}:checked`).length > 0;
     },
 
     render: function () {
