@@ -17,7 +17,7 @@ define([
 
       this.collection = new Groups();
       this.collection.on('reset sync', this.addAllGroups, this);
-      this.collection.fetch({reset: true});
+      this.collection.fetch({data: $.param({approved: 0}), reset: true});
     },
 
     addGroup: function(group) {

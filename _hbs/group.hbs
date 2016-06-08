@@ -1,3 +1,8 @@
 <h1>{{group.title}}</h1>
 {{group.info}}
-<a href="#" class="approve">Approve</a>{{#if admin.role.can_delete_groups}} - <a href="#" class="delete">Delete</a>{{/if}}
+{{#if group.approved}}
+<a href="#" class="approve">Unapprove</a>
+{{else}}
+<a href="#" class="approve">Approve</a>
+{{/if}}
+{{#if admin.role.can_delete_groups}} - <a href="#" class="delete">Delete</a>{{/if}}

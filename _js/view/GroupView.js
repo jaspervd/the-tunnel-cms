@@ -25,6 +25,7 @@ define([
     approveHandler: function (e) {
       e.preventDefault();
       this.model.approve();
+      this.render();
     },
 
     deleteHandler: function (e) {
