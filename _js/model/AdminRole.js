@@ -4,7 +4,7 @@
 import { api } from 'classes/globals';
 import { Model } from 'backbone';
 
-define(['jquery'], ($) => {
+define([], () => {
   var AdminRole = Model.extend({
     id: null,
     title: '',

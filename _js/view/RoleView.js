@@ -14,7 +14,7 @@ define([
     className: 'role',
 
     events: {
-      'click .save': 'saveHandler',
+      'submit .update': 'saveHandler',
       'click .delete': 'deleteHandler'
     },
 
@@ -24,9 +24,17 @@ define([
 
     saveHandler: function (e) {
       e.preventDefault();
-    // set model according to form
-    // this.model.save();
-      console.log('save');
+      $.ajax({
+        url: `${this.model.urlRoot}/${this.model.get('id')}`,
+        data: $(e.currentTarget).serialize(),
+        type: 'PUT'
+      }).success((data) => {
+        console.log('succes');
+        return data;
+      }).fail((data) => {
+        console.log('error');
+        return data;
+      });
     },
 
     deleteHandler: function (e) {

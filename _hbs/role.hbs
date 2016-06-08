@@ -1,7 +1,7 @@
-<form method="post" action="">
+<form method="post" action="" class="update">
 	<p>
 		<label for="title">Title</label>
-		<input type="text" value="" class="title" name="title" />
+		<input type="text" value="" class="title" value="{{title}}" name="title" />
 	</p>
 	<label for="can_edit_users"><input type="checkbox" value="1" class="can_edit_users" name="can_edit_users"{{#if can_edit_users}} checked{{/if}} /> Can edit users</label>
 	<label for="can_delete_users"><input type="checkbox" value="1" class="can_delete_users" name="can_delete_users"{{#if can_delete_users}} checked{{/if}} /> Can delete users</label>
@@ -12,4 +12,5 @@
 	<label for="can_feature_creations"><input type="checkbox" value="1" class="can_feature_creations" name="can_feature_creations"{{#if can_feature_creations}} checked{{/if}} /> Can feature creations</label>
 	<label for="can_judge_creations"><input type="checkbox" value="1" class="can_judge_creations" name="can_judge_creations"{{#if can_judge_creations}} checked{{/if}} /> Can judge creations</label>
 	<input type="submit" value="Save" />
+	<a href="#" class="delete">Delete</a>
 </form>
