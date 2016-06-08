@@ -27,7 +27,6 @@ define(['jquery'], ($) => {
     },
 
     assignRole: function(role_id) {
-      console.log(role_id);
       $.ajax({
         url: `${this.urlRoot}${this.get('id')}/role`,
         data: {role_id: role_id},

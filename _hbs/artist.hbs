@@ -1,8 +1,10 @@
 <h1>{{artist.username}}</h1>
 {{artist.bio}}
 <a href="#" class="hide">Hide</a>{{#if admin.role.can_delete_users}} - <a href="#" class="delete">Delete</a>{{/if}}
+{{#if admin.role.can_edit_roles}}
 <select name="roles" class="assign-role">
 {{#each roles}}
 	<option value="{{this.id}}">{{this.title}}</option>
 {{/each}}
 </select>
+{{/if}}
