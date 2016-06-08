@@ -15,10 +15,12 @@ define([
 
     events: {
       'click .hide': 'hideHandler',
-      'click .delete': 'deleteHandler'
+      'click .delete': 'deleteHandler',
+      'change .assign-role': 'assignRoleHandler'
     },
 
-    initialize: function () {
+    initialize: function (options) {
+      this.options = options;
       _.bindAll.apply(_, [this].concat(_.functions(this)));
     },
 
@@ -33,8 +35,12 @@ define([
       this.remove();
     },
 
+    assignRoleHandler: function (e) {
+      this.model.assignRole($(e.currentTarget).find(':selected').val());
+    },
+
     render: function () {
-      this.$el.html(this.template({artist: this.model.toJSON(), admin: window.user}));
+      this.$el.html(this.template({artist: this.model.toJSON(), admin: window.user, roles: this.options.roles.toJSON()}));
       this.delegateEvents();
       return this;
     }

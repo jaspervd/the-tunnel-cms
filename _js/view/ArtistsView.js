@@ -7,27 +7,40 @@ define([
   'backbone',
   '_hbs/artists.hbs',
   'collection/Users',
-  'view/ArtistView'
-], ($, _, Backbone, template, Users, ArtistView) => {
+  'view/ArtistView',
+  'collection/AdminRoles'
+], ($, _, Backbone, template, Users, ArtistView, Roles) => {
   var ArtistsView = Backbone.View.extend({
     template: template,
 
     initialize: function () {
-      //_.bindAll.apply(_, [this].concat(_.functions(this)));
+      this.getRoles();
+    },
 
+    renderRoles: function() {
+      this.getArtists();
+    },
+
+    getRoles: function() {
+      this.roles = new Roles();
+      this.roles.on('reset sync', this.renderRoles, this);
+      this.roles.fetch({reset: true});
+    },
+
+    getArtists: function() {
       this.collection = new Users();
-      this.collection.on('reset sync', this.addAllArtists, this);
+      this.collection.on('reset sync', this.renderArtists, this);
       this.collection.fetch({reset: true});
     },
 
-    addArtist: function(artist) {
-      var view = new ArtistView({ model: artist });
+    renderArtist: function(artist) {
+      var view = new ArtistView({ model: artist, roles: this.roles });
       this.$el.find('.artists').append(view.render().$el);
     },
 
-    addAllArtists: function() {
+    renderArtists: function() {
       this.render();
-      this.collection.each(this.addArtist.bind(this), this);
+      this.collection.each(this.renderArtist.bind(this), this);
     },
 
     render: function () {

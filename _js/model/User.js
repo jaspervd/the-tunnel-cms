@@ -24,6 +24,19 @@ define(['jquery'], ($) => {
       }).fail(() => {
         console.log('error');
       });
+    },
+
+    assignRole: function(role_id) {
+      console.log(role_id);
+      $.ajax({
+        url: `${this.urlRoot}${this.get('id')}/role`,
+        data: {role_id: role_id},
+        type: 'PATCH'
+      }).success((data) => {
+        console.log(data);
+      }).fail(() => {
+        console.log('error');
+      });
     }
   });
 
