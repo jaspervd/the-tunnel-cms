@@ -8,6 +8,9 @@
 	{{#if role.can_approve_groups}}
 	<li><a href="#groups">Groups</a></li>
 	{{/if}}
+	{{#if role.can_edit_roles}}
+	<li><a href="#roles">Roles</a></li>
+	{{/if}}
 	{{#if id}}
 	<li><a href="#logout">Logout</a></li>
 	{{else}}

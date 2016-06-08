@@ -11,9 +11,10 @@ define([
   '../view/LoginView',
   '../view/GroupsView',
   '../view/ArtistsView',
+  '../view/RolesView',
   '../view/NavigationView',
   '../view/FooterView'
-], ($, _, Backbone, CreationsView, LoginView, GroupsView, ArtistsView, NavigationView, FooterView) => {
+], ($, _, Backbone, CreationsView, LoginView, GroupsView, ArtistsView, RolesView, NavigationView, FooterView) => {
   var AppRouter = Backbone.Router.extend({
     currentView: undefined,
 
@@ -32,6 +33,7 @@ define([
       'groups': 'groups',
       'creations': 'creations',
       'artists': 'artists',
+      'roles': 'roles',
       '*path': 'login'
     },
 
@@ -73,6 +75,12 @@ define([
     artists: function() {
       this.priviligeCheck(window.user.role.can_edit_users);
       this.currentView = new ArtistsView();
+      this.render();
+    },
+
+    roles: function() {
+      this.priviligeCheck(window.user.role.can_edit_roles);
+      this.currentView = new RolesView();
       this.render();
     },
 

@@ -1,0 +1,19 @@
+<h1>Admin roles</h1>
+<h2>Add role</h2>
+<form method="post" action="" class="add">
+	<p>
+		<label for="title">Title</label>
+		<input type="text" value="" name="title" />
+	</p>
+	<label for="can_edit_users"><input type="checkbox" value="1" name="can_edit_users" /> Can edit users</label>
+	<label for="can_delete_users"><input type="checkbox" value="1" name="can_delete_users" /> Can delete users</label>
+	<label for="can_edit_roles"><input type="checkbox" value="1" name="can_edit_roles" /> Can edit roles</label>
+	<label for="can_approve_groups"><input type="checkbox" value="1" name="can_approve_groups" /> Can approve groups</label>
+	<label for="can_edit_creations"><input type="checkbox" value="1" name="can_edit_creations" /> Can edit creations</label>
+	<label for="can_delete_creations"><input type="checkbox" value="1" name="can_delete_creations" /> Can delete creations</label>
+	<label for="can_feature_creations"><input type="checkbox" value="1" name="can_feature_creations" /> Can feature creations</label>
+	<label for="can_judge_creations"><input type="checkbox" value="1" name="can_judge_creations" /> Can judge creations</label>
+	<input type="submit" value="Create role" />
+</form>
+<h2>Roles</h2>
+<div class="roles"></div>

@@ -1,0 +1,15 @@
+<form method="post" action="">
+	<p>
+		<label for="title">Title</label>
+		<input type="text" value="" class="title" name="title" />
+	</p>
+	<label for="can_edit_users"><input type="checkbox" value="1" class="can_edit_users" name="can_edit_users"{{#if can_edit_users}} checked{{/if}} /> Can edit users</label>
+	<label for="can_delete_users"><input type="checkbox" value="1" class="can_delete_users" name="can_delete_users"{{#if can_delete_users}} checked{{/if}} /> Can delete users</label>
+	<label for="can_edit_roles"><input type="checkbox" value="1" class="can_edit_roles" name="can_edit_roles"{{#if can_edit_roles}} checked{{/if}} /> Can edit roles</label>
+	<label for="can_approve_groups"><input type="checkbox" value="1" class="can_approve_groups" name="can_approve_groups"{{#if can_approve_groups}} checked{{/if}} /> Can approve groups</label>
+	<label for="can_edit_creations"><input type="checkbox" value="1" class="can_edit_creations" name="can_edit_creations"{{#if can_edit_creations}} checked{{/if}} /> Can edit creations</label>
+	<label for="can_delete_creations"><input type="checkbox" value="1" class="can_delete_creations" name="can_delete_creations"{{#if can_delete_creations}} checked{{/if}} /> Can delete creations</label>
+	<label for="can_feature_creations"><input type="checkbox" value="1" class="can_feature_creations" name="can_feature_creations"{{#if can_feature_creations}} checked{{/if}} /> Can feature creations</label>
+	<label for="can_judge_creations"><input type="checkbox" value="1" class="can_judge_creations" name="can_judge_creations"{{#if can_judge_creations}} checked{{/if}} /> Can judge creations</label>
+	<input type="submit" value="Save" />
+</form>
