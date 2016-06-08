@@ -38,6 +38,7 @@ define([
       role.set('can_feature_creations', this.checkedValue('.can_feature_creations'));
       role.set('can_judge_creations', this.checkedValue('.can_judge_creations'));
       role.save();
+      this.renderRole(role);
     },
 
     renderRole: function(role) {

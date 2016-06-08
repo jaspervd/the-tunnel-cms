@@ -34,18 +34,6 @@ define([
       this.model.set('can_feature_creations', this.checkedValue('.can_feature_creations'));
       this.model.set('can_judge_creations', this.checkedValue('.can_judge_creations'));
       this.model.save();
-      /*
-      $.ajax({
-        url: `${this.model.urlRoot}/${this.model.get('id')}`,
-        data: $(e.currentTarget).serialize(),
-        type: 'PUT'
-      }).success((data) => {
-        console.log('succes');
-        return data;
-      }).fail((data) => {
-        console.log('error');
-        return data;
-      });*/
     },
 
     checkedValue: function(input) {
