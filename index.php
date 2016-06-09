@@ -17,6 +17,8 @@ $basename = str_replace('/index.php', '', $_SERVER['SCRIPT_NAME']); // remove in
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <div class="left-fig"></div>
+  <div class="right-fig"></div>
 	<div class="container"></div>
 	<script>
 	window.app = window.app || {};

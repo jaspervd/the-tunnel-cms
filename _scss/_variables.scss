@@ -1,4 +1,15 @@
-$root: '../images/';
-$font-content: 'FF Meta Pro', sans-serif;
-$font-header: 'Avenir Condensed', sans-serif;
-$font-button: 'Avenir Condensed', sans-serif;
+//$root: '../images/';
+$image_source: '../assets/images/';
+$font-content: 'FFMetaProNormal', 'Helvetica', serif;
+$font-header: 'AvenirNext', sans-serif;
+$font-button: 'AvenirNext', sans-serif;
+
+$yellow: #FFDD00;
+$pink: #ED2855;
+$green: #00CD9A;
+$darkgrey: #29292C;
+$lightgrey: #E5E5E5;
+$white: #FFF;
+$padding: 40px;
+
+$footer_height: 120px;
